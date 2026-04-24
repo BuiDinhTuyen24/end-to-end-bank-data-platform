@@ -58,6 +58,7 @@ CREATE TABLE gold.fact_transaction(
 	trans_id INT PRIMARY KEY,
 	account_id INT,
 	date_id INT,
+	transaction_date DATE,
 	amount DECIMAL(10,2),
 	balance DECIMAL(10,2),
 	transaction_type NVARCHAR(50),

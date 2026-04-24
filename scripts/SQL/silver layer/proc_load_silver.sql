@@ -300,16 +300,16 @@ BEGIN
 			ELSE 'Spending'
 		END,
 		CASE 
-			WHEN k_symbol = '"PRIJEM"' THEN 'Income'
-			WHEN k_symbol = '"VYDAJ"' THEN 'Spending'
-			WHEN k_symbol = '"VYBER"' THEN 'Withdrawal'
-			WHEN k_symbol = '"VYBER KARTOU"' THEN 'Card withdrawal'
-			WHEN k_symbol = '"PREVOD Z UCTU"' THEN 'Incoming transfer'
-			WHEN k_symbol = '"PREVOD NA UCET"' THEN 'Outgoing transfer'
-			WHEN k_symbol = '"VKLAD"' THEN 'Deposit'
-			WHEN k_symbol = '""' OR k_symbol IS NULL THEN 'Unknown'
+			WHEN operation = '"PRIJEM"' THEN 'Income'
+			WHEN operation = '"VYDAJ"' THEN 'Spending'
+			WHEN operation = '"VYBER"' THEN 'Withdrawal'
+			WHEN operation = '"VYBER KARTOU"' THEN 'Card withdrawal'
+			WHEN operation = '"PREVOD Z UCTU"' THEN 'Incoming transfer'
+			WHEN operation = '"PREVOD NA UCET"' THEN 'Outgoing transfer'
+			WHEN operation = '"VKLAD"' THEN 'Deposit'
+			WHEN operation = '""' OR operation IS NULL THEN 'Unknown'
 			ELSE 'Other'
-		END,
+		END AS operation,
 		amount,
 		balance,
 		CASE 
@@ -322,7 +322,7 @@ BEGIN
 			WHEN k_symbol = '"SIPO"' THEN 'Household Payments'
 			WHEN k_symbol = '""' OR k_symbol = '"' OR k_symbol IS NULL OR k_symbol = '" "' THEN 'Unknown'
 			ELSE 'Other'
-		END,
+		END AS k_symbol,
 		CASE 
 			WHEN bank IS NULL OR REPLACE(bank, '"', '') = '' THEN 'Not Available'
 			ELSE REPLACE(bank, '"', '')
